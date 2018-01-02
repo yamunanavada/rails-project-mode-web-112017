@@ -1,0 +1,3 @@
+class GamesController < ApplicationRecord
+
+end

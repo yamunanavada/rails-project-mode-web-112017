@@ -1,0 +1,3 @@
+class TeamsController < ApplicationRecord
+
+end
