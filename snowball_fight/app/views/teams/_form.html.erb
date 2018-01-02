@@ -1,0 +1,12 @@
+<% if flash[:error] %>
+  <ul><% flash[:error].each do |error| %>
+    <li><%= error %></li>
+  <% end %></ul>
+<% end %>
+
+<%= form_for @team do |f| %>
+  <p><%= f.label :name %><br>
+  <%= f.text_field :name %><br></p>
+  <%= f.collection_select :league_id, @leagues, :id, :name, prompt: true %>
+  <%= f.submit %><br>
+<% end %>
