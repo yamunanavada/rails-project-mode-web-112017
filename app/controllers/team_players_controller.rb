@@ -3,7 +3,6 @@ class TeamPlayersController < ApplicationController
 def create
   @team_player = TeamPlayer.new(team_player_params)
   if @team_player.valid?
-    byebug
     @team_player.save
     redirect_to team_path(Team.find_by(team_player_params[:team_id]))
   else
