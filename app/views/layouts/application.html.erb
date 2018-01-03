@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <%= link_to "Sign Out", delete_session_path %>
+    <%= link_to "Leagues", leagues_path %>
+    <%= link_to "Your Account", user_path(current_user) %>
     <%= yield %>
   </body>
 </html>
