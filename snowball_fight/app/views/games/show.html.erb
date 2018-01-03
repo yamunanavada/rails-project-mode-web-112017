@@ -1,0 +1,12 @@
+<h2>Snowball Fight Commence!</h2>
+<h3><%= @team.name %> vs. <%= @opponent.name %></h3>
+
+<p><strong> <%= @team.name %> Players:</strong></p>
+<ul><% @team.players.each do |player| %>
+  <li><%=link_to player.name, player %> | Speed: <%= player.speed %> SPM | Accuracy: <%= player.accuracy %>%</li>
+<% end %></ul>
+
+<p><strong> <%= @opponent.name %> Players:</strong></p>
+<ul><% @opponent.players.each do |player| %>
+  <li><%=link_to player.name, player %> | Speed: <%= player.speed %> SPM | Accuracy: <%= player.accuracy %>%</li>
+<% end %></ul>
