@@ -8,4 +8,5 @@ class League < ApplicationRecord
       errors.add(:team, "This league is full.")
     end
   end
+
 end
