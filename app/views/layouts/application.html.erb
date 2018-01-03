@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SnowballFight</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= link_to "Sign Out", delete_session_path %>
+    <%= link_to "Leagues", leagues_path %>
+    <%= link_to "Your Account", user_path(current_user) %>
+    <%= yield %>
+  </body>
+</html>

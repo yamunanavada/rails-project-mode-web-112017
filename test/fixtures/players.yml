@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  speed: 1
+  accuracy: 1
+  price: 1
+
+two:
+  name: MyString
+  speed: 1
+  accuracy: 1
+  price: 1

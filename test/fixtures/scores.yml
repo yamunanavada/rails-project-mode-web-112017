@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player: one
+  game: one
+  balls_thrown: 1
+  hits_given: 1
+
+two:
+  player: two
+  game: two
+  balls_thrown: 1
+  hits_given: 1
