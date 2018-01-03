@@ -11,13 +11,10 @@ class Team < ApplicationRecord
     # dup = array.select{|element| array.count(element) <= 1 }
 
     teams_in_league = self.league.teams
-    self.games.map do |game|
-
-
-
+    teams_in_league.select do |team|
+      #should only return those opponents whose games played wiht self is 1 or 0.
+      self.games.where(opponent_id: team.id).count < 2 && team != self
     end
-
-
   end
 
 
