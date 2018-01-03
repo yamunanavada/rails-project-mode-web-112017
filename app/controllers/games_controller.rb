@@ -6,15 +6,14 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
-    @opponents = @team.available_opponents
+
 
   end
 
   def create
     @game = Game.new(game_params)
     @inverse_game = Game.new(team_id: game_params[:opponent_id], opponent_id: game_params[:team_id])
-    @opponents = Team.all
-    byebug
+
     # @opponents ==> This needs to be a collection of opponents that the current team has either played once or not at all.
     if @game.valid? && @inverse_game.valid?
       @game.save && @inverse_game.save
