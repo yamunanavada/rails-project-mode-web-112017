@@ -16,7 +16,9 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     @team.user = User.find(session[:user_id])
-    if @team.valid?
+    @team.war_chest = 100
+    @league = League.find(team_params[:league_id])
+    if @team.valid? && @league.valid?
       @team.save
       redirect_to team_path(@team)
     else

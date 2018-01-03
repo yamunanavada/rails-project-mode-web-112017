@@ -6,8 +6,9 @@ class User < ApplicationRecord
 
 
   #What's in this user's war_chest
-  # def buy_players
-  # end
+  def buy_players(player_cost)
+    self.war_chest -= player_cost
+  end
 
   #def win_game
   #end

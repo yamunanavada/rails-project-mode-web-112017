@@ -7,16 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+# 100.times do
+#   Player.create(name: Faker::HarryPotter.character,
+#     speed: rand(10),
+#     accuracy: rand(100),
+#     price: rand(15)
+#   )
+# end
+
+
 100.times do
-  Player.create(name: Faker::HarryPotter.character,
-    speed: rand(10),
-    accuracy: rand(100),
-    price: rand(15)
-  )
-end
-
-
-20.times do
   User.create(
     name: Faker::Name.name,
     username: Faker::StarWars.character.split.join('').downcase,
@@ -24,15 +24,20 @@ end
   )
 end
 
-3.times do
-  league = League.create(
-    name: Faker::LordOfTheRings.location
-  )
-  10.times do
-    Team.create(
-      name: Faker::Team.name,
-      user_id: User.all.sample.id,
-      league_id: league.id
-    )
-  end
-end
+# 3.times do
+#   league = League.create(
+#     name: Faker::LordOfTheRings.location
+#   )
+#   10.times do
+#     Team.create(
+#       name: Faker::Team.name,
+#       user_id: User.all.sample.id,
+#       league_id: league.id,
+#       war_chest: 100
+#     )
+#   end
+# end
+#
+# Player.all.each do |player|
+#   TeamPlayer.create(player: player, team: Team.all.sample)
+# end
