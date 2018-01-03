@@ -4,9 +4,6 @@ class Player < ApplicationRecord
   has_many :scores
   has_many :games, through: :scores
 
-
-
-
   def teams_available(user)
     user_teams = Team.all.select {|t| user == t.user} #users teams
     available_teams = user_teams.select do |t| #select user's teams where
@@ -17,6 +14,4 @@ class Player < ApplicationRecord
       end
     end
   end
-
-
 end

@@ -9,6 +9,7 @@ class PlayersController < ApplicationController
     @team_player = TeamPlayer.new()
     @user = current_user
     @available_teams = @player.teams_available(@user)
+    @teams = Team.find_by(user: current_user)
   end
 
 
