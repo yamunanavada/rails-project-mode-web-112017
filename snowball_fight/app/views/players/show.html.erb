@@ -3,3 +3,10 @@
 <p><strong>Speed:</strong> <%= pluralize( @player.speed, 'snowball') %> per minute</p>
 <p><strong>Accuracy:</strong> <%= @player.accuracy %>% hit rate</p>
 <p><strong>Price:</strong> <%= @player.price %> snowballs</p>
+
+
+<%= form_for @team_player do |f| %>
+  <%= f.hidden_field :player_id, value: @player.id %>
+  <%= f.collection_select :team_id, @available_teams, :id, :name, prompt: true %>
+  <%= f.submit %>
+<% end %>

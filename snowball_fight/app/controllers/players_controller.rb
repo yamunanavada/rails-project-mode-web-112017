@@ -7,7 +7,8 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find(params[:id])
     @team_player = TeamPlayer.new()
-    @teams = Team.find_by(user: current_user)
+    @user = current_user
+    @available_teams = @player.teams_available(@user)
   end
 
 

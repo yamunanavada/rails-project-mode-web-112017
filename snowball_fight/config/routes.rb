@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :leagues
   resources :players, only: [:index, :show]
   resources :games, only: [:index, :show, :new, :create]
+  resources :team_players, only: [:create]
 
   root 'sessions#index'
   get '/sessions', to: 'sessions#index'

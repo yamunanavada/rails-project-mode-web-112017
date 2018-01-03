@@ -1,5 +1,5 @@
 <h2>Players</h2>
 
-<ul><% @players.each do |player| %>
+<ul><% @players.sort_by {|p| p.price}.each do |player| %>
   <li><%= link_to player.name, player %> | Speed: <%= player.speed %> SPM | Accuracy: <%= player.accuracy %>% | Price: <%= player.price %> snowballs <!-- selector to add player to a team --></li>
 <% end %></ul>
