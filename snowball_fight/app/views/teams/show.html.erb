@@ -7,3 +7,18 @@
 <% end %></ul>
 
 <%= link_to "Add Players To Your Team", players_path %>
+
+
+<p><strong>Snowball Fights Played: </strong>
+  <ul><% @team.games.each do |game| %>
+    <li>Opponent: <%=game.opponent.name %> - Winner: </li>
+  <% end %></ul>
+
+
+<p><strong>Start a Fight: </strong>
+<%= form_for @game do |f| %>
+    <%= f.hidden_field :team_id, value: @team.id %>
+    <%= f.label :"Select an Opponent" %>
+    <%= f.collection_select :opponent_id, @opponents, :id, :name %><br>
+    <%= f.submit "Snowball Fight!" %>
+<% end %></p>

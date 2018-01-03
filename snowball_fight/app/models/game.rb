@@ -7,10 +7,13 @@ class Game < ApplicationRecord
 
 
   #validation that the team and opponent have either never played or only played once
-  def less_than_2_games_played?
-    num_of_games = Game.all.where(team: self, opponent: opponent).count
-    num_of games < 2
-  end
+  # def less_than_2_games_played?
+  #   num_of_games = Game.all.where(team: self, opponent: opponent).count
+  #   num_of games < 2
+  # end
+
+  #method something to add calculate final score of game and winner
+
 
 
 

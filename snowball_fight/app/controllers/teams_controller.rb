@@ -3,6 +3,8 @@ class TeamsController < ApplicationController
 
 
   def show
+    @game = Game.new
+    @opponents = @team.available_opponents
 
   end
 
