@@ -69,7 +69,7 @@ class Team < ApplicationRecord
     teams_in_league = self.league.teams
     teams_in_league.select do |team|
       #should only return those opponents whose games played wiht self is 1 or 0.
-      self.games.where(opponent_id: team.id).count < 2 && team != self
+      team.games.where(team_id: self.id, opponent_id: team.id).count < 2 && team.games.where(team_id: team.id, opponent_id: self.id).count < 2 && team != self
     end
   end
 

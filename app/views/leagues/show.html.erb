@@ -1,7 +1,7 @@
 <h2> <%= @league.name %></h2>
 
 <p><strong>League Teams: </strong></p>
-<ul><% @league.teams.each do |team| %>
+<ul><% @league.teams.order(war_chest: :desc).each do |team| %>
   <li>Team: <%= link_to team.name, team %> | User: <%= link_to team.user.name, team.user %> </li>
 <%end%></ul>
 

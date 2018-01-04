@@ -17,7 +17,6 @@ def create
 end
 
 def destroy
-  byebug
   @team_player = TeamPlayer.find(params[:format])
   @team = @team_player.team
   @team.sell_player(@team_player.player.price)
