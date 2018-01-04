@@ -10,12 +10,20 @@ class Team < ApplicationRecord
   #validate that team has money
 
 
+  def team_in_leauge?
 
+
+  end
+
+  def win_game(prize_money)
+    self.war_chest = self.war_chest + prize_money
+    self.save
+    #test this once scores are in place
+  end
 
   def max_players
     if self.players.count > 11
       errors.add(:team, "has 11 players already.")
-      #this error isnt showing up
     end #team can only have 11 players maximum
   end
 

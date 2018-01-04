@@ -14,13 +14,13 @@ class SessionsController < ApplicationController
       redirect_to user_path(@user)
     else
       flash[:error] = "Username and password do not match"
-      redirect_to login_path
+      redirect_to signin_path
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_path
+    redirect_to signup_path
   end
 
 

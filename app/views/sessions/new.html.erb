@@ -1,7 +1,5 @@
 <% if flash[:error] %>
-  <% flash[:error].each do |error| %>
-    <%= error %>
-  <% end %>
+    <%= flash[:error] %>
 <% end %>
 
 <%= form_tag sessions_path do %>
