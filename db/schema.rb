@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180102181958) do
+ActiveRecord::Schema.define(version: 20180104024757) do
 
   create_table "games", force: :cascade do |t|
     t.integer "team_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20180102181958) do
     t.integer "league_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "war_chest"
     t.index ["league_id"], name: "index_teams_on_league_id"
     t.index ["user_id"], name: "index_teams_on_user_id"
   end
@@ -70,9 +71,9 @@ ActiveRecord::Schema.define(version: 20180102181958) do
     t.string "name"
     t.string "username"
     t.string "password_digest"
-    t.integer "war_chest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin"
   end
 
 end

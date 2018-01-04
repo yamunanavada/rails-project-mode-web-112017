@@ -1,3 +1,10 @@
+<% if flash[:error] %>
+  <ul><% flash[:error].each do |error| %>
+    <li><%= error %></li>
+  <% end %></ul>
+<% end %>
+
+
 <h2><%= @player.name %></h2>
 
 <p><strong>Speed:</strong> <%= pluralize( @player.speed, 'snowball') %> per minute</p>
@@ -7,5 +14,5 @@
 <%= form_for @team_player do |f| %>
   <%= f.hidden_field :player_id, value: @player.id %>
   <%= f.collection_select :team_id, @available_teams, :id, :name, prompt: true %>
-  <%= f.submit %>
+  <%= f.submit "Add Player to Team"%>
 <% end %>

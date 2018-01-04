@@ -2,12 +2,14 @@
 
 <p><strong>League Teams: </strong></p>
 <ul><% @league.teams.each do |team| %>
-  <li><%= link_to team.name, team %> | <%= link_to team.user.name, team.user %> </li>
+  <li>Team: <%= link_to team.name, team %> | User: <%= link_to team.user.name, team.user %> </li>
 <%end%></ul>
 
 <p><strong> All Fights Concluded: </strong></p>
-<ul><% @league.teams.each do |team| %>
-      <% team.games.each do |game| %>
-          <li><%= game.team.name %> vs. <%= game.opponent.name %> - Winner:  </li>
-      <%end%>
-<%end%></ul>
+<% if @league.games == nil %>
+   No snowball fights yet!
+<% else %>
+    <ul><% @league.games.each do |game| %>
+        <li><%= game.team.name %> vs. <%= game.opponent.name %> - Winner:  </li>
+    <%end%></ul>
+<%end%>
