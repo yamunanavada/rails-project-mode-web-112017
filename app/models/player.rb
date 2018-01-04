@@ -28,4 +28,8 @@ class Player < ApplicationRecord
     end
   end
 
+  def self.available_to_be_chosen
+
+  end
+
 end

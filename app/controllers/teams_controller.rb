@@ -22,7 +22,7 @@ class TeamsController < ApplicationController
       @team.save
       redirect_to team_path(@team)
     else
-      flash[:error] = @team.errors.full_messages
+      flash[:error] = @team.errors.full_messages + @league.errors.full_messages
       redirect_to new_team_path
     end
   end
