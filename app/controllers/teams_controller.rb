@@ -2,6 +2,7 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :destroy, :update]
 
 
+
   def show
     @game = Game.new
     @opponents = @team.available_opponents
@@ -15,6 +16,7 @@ class TeamsController < ApplicationController
   end
 
   def create
+    byebug
     @team = Team.new(team_params)
     @team.user = User.find(session[:user_id])
     @team.war_chest = 100
