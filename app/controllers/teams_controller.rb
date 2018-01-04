@@ -5,7 +5,8 @@ class TeamsController < ApplicationController
   def show
     @game = Game.new
     @opponents = @team.available_opponents
-
+    @team_player = TeamPlayer.new
+    @players = @team.league.players_available
   end
 
   def new

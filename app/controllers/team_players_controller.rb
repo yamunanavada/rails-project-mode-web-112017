@@ -16,6 +16,16 @@ def create
   end
 end
 
+def destroy
+  byebug
+  @team_player = TeamPlayer.find(params[:format])
+  @team = @team_player.team
+  @team.sell_player(@team_player.player.price)
+  @team.save
+  @team_player.destroy
+  redirect_to team_path(@team)
+end
+
 private
 
 def team_player_params

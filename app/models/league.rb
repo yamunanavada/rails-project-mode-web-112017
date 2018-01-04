@@ -1,6 +1,7 @@
 class League < ApplicationRecord
   has_many :teams
   has_many :users, through: :teams
+  has_many :players, through: :teams
   validate :is_league_full?
 
   def is_league_full?
@@ -16,6 +17,12 @@ class League < ApplicationRecord
         game
       end
     end.flatten
+  end
+
+  def players_available
+    Player.all.select do |player|
+      !self.players.include? player
+    end
   end
 
 end

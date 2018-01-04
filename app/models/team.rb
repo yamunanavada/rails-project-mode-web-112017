@@ -39,6 +39,10 @@ class Team < ApplicationRecord
     self.war_chest = self.war_chest - player_cost
   end
 
+  def sell_player(player_cost)
+    self.war_chest = self.war_chest + player_cost
+  end
+
   def available_opponents
     #This method should find the opponents that a given team has either played once or not at all in a league.
     teams_in_league = self.league.teams

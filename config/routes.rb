@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   get "/signin", to: "sessions#new",  as: "signin"
   post "/sessions", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy", as: 'delete_session'
+  delete "/team_players", to: "team_players#destroy", as: "delete_team_player"
 
 end

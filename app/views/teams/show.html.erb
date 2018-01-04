@@ -6,12 +6,22 @@
 <p><strong>Players: </strong></p>
 
 <ul><% @team.players.each do |player| %>
-  <li><%= link_to player.name, player %></li>
+  <li><%= link_to player.name, player %> | <%= link_to "Sell Player", delete_team_player_path(player.team_players.find_by(team_id: @team.id)), method: :delete%></li>
 <% end %></ul>
 
-<% if @team.user == current_user %>
-<%= link_to "Add Players To Your Team", players_path %>
+<% if @team.players.length < 11 %>
+  <p><strong>Add Player To This Team: </strong>
+    <%= form_for @team_player do |f| %>
+        <%= f.hidden_field :team_id, value: @team.id %>
+        <%= f.label :"Select a Player" %>
+        <%= f.collection_select :player_id, @players, :id, :name %><br>
+        <%= f.submit "Add Player" %>
+    <% end %></p>
 <% end %>
+
+
+<%= link_to "View All Players", players_path %>
+
 
 
 <p><strong>Snowball Fights Played: </strong>
