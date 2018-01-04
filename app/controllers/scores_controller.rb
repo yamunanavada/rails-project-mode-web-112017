@@ -1,3 +1,4 @@
 class ScoresController < ApplicationRecord
 
+
 end

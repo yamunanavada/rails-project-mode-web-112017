@@ -2,7 +2,8 @@ class Game < ApplicationRecord
   belongs_to :team
   belongs_to :opponent, class_name: 'Team'
   has_many :scores
-  has_many :players, through: :scores
+  has_many :players, through: :team
+  has_many :players, through: :opponent
   #validate less_than_2_games_played?
 
 
@@ -14,5 +15,13 @@ class Game < ApplicationRecord
   # end
 
   #method something to add calculate final score of game and winner
+
+  def team_scores(team)
+    team.players.each do |player|
+      Score.create(game_id: self.id, player_id: player.id, balls_thrown: player.thrown, hits_given: player.hits)
+    end
+  end
+
+
 
 end

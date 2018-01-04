@@ -16,6 +16,14 @@ class Player < ApplicationRecord
   #   end
   # end
 
+  def thrown
+    (self.speed * 60)
+  end
+
+  def hits
+    (self.thrown * self.accuracy)/100
+  end
+
   def teams_available(user)
     available_teams = user.teams.select do |team|
       leagues_available.include? team.league
