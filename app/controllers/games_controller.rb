@@ -11,11 +11,12 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-    @inverse_game = Game.new(team_id: game_params[:opponent_id], opponent_id: game_params[:team_id])
+    # @inverse_game = Game.new(team_id: game_params[:opponent_id], opponent_id: game_params[:team_id])
+    #instead of doing inverse game...
+    # && @inverse_game.valid?
+    if @game.valid?
 
-    if @game.valid? && @inverse_game.valid?
-
-      @game.save && @inverse_game.save
+      @game.save
       @game.team_scores(Team.find(game_params[:team_id]))
       @game.team_scores(Team.find(game_params[:opponent_id]))
       byebug
