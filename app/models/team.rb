@@ -5,10 +5,31 @@ class Team < ApplicationRecord
   has_many :players, through: :team_players
   has_many :games
   has_many :opponents, through: :games, foreign_key: 'opponent_id'
+  has_many :scores, through: :games
   validate :max_players
   validate :can_buy_players?
   #validate that team has money
 
+
+  def thrown(game)
+    thrown = 0
+    self.players.map do |player|
+      player.scores.select {|s| s.game == game}.each do |s|
+        thrown += s.balls_thrown
+      end
+    end
+    thrown
+  end
+
+  def hits(game)
+    hits = 0
+    self.players.map do |player|
+      player.scores.select {|s| s.game == game}.each do |s|
+        hits += s.hits_given
+      end
+    end
+    hits
+  end
 
   def team_in_leauge?
 

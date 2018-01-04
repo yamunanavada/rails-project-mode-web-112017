@@ -16,12 +16,10 @@ class Game < ApplicationRecord
 
   #method something to add calculate final score of game and winner
 
-  def team_scores(team)
+  def generate_team_scores(team)
     team.players.each do |player|
       Score.create(game_id: self.id, player_id: player.id, balls_thrown: player.thrown, hits_given: player.hits)
     end
   end
-
-
 
 end
