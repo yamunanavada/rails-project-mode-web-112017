@@ -71,14 +71,10 @@ class Team < ApplicationRecord
     end
   end
 
-<<<<<<< HEAD
   def all_games
     Game.all.where(team_id: self.id) + Game.all.where(opponent_id: self.id)
   end
 
-=======
-  private
->>>>>>> master
 
   def set_defaults
       self.war_chest = TEAM_PRICE_AVG + STARTING_BONUS
