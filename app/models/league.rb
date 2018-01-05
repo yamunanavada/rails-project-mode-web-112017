@@ -6,7 +6,7 @@ class League < ApplicationRecord
 
   def is_league_full?
 
-    if self.teams.count > 10
+    if self.teams.count > LEAGUE_SIZE
       errors.add(:league, "is already full.")
     end
   end
