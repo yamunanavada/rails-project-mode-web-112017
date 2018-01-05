@@ -34,7 +34,7 @@
       <%= form_for @team_player do |f| %>
           <%= f.hidden_field :team_id, value: @team.id %>
           <%= f.label :"Select a Player" %>
-          <%= f.collection_select :player_id, @players, :id, :name %><br>
+          <%= f.collection_select :player_id, @players, :id, :name_with_info %><br>
           <%= f.submit "Add Player" %>
       <% end %></p>
   <% end %>

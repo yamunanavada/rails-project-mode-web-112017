@@ -38,6 +38,10 @@ class Player < ApplicationRecord
     end
   end
 
+  def name_with_info
+    "#{self.name} | Speed: #{self.speed} | Hit%: #{self.accuracy} | Price: #{self.price}"
+  end
+
   private
 
   def set_defaults
