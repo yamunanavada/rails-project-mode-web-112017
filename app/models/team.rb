@@ -57,7 +57,7 @@ class Team < ApplicationRecord
   end
 
   def sell_player(player_cost)
-    self.war_chest = self.war_chest + player_cost
+    self.war_chest = self.war_chest + (player_cost * (100 - PLAYERDEPRECIATON)/100)
   end
 
   def available_opponents
