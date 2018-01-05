@@ -10,7 +10,7 @@
       </tr>
   <% @leagues.order(name: :desc).each do |league| %><tr>
     <td class="align-middle"><%= @leagues.order(name: :desc).index(league) + 1 %></td>
-    <td class="align-middle"><%= link_to league.name, league.name %></td>
+    <td class="align-middle"><%= link_to league.name, league %></td>
     <td class="align-middle"><%= league.teams.count%> </td>
   </tr>
   <%end%></tbody>

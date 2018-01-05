@@ -1,5 +1,12 @@
+
+
 <h2 class="tile" id="headers">Players</h2>
 
+<div class="errors">
+<% if flash[:error] %>
+    <%= flash[:error] %>
+  <% end %>
+</div>
 
 <div class="tile">
   <table class="table table-hover">
