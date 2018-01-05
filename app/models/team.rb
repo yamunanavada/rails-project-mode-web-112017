@@ -39,9 +39,9 @@ class Team < ApplicationRecord
   end
 
   def max_players
-    if self.players.count > TEAMSIZE
-      errors.add(:team, "has #{TEAMSIZE} players already.")
-    end #team can only have TEAMSIZE players maximum
+    if self.players.count > TEAM_SIZE
+      errors.add(:team, "has #{TEAM_SIZE} players already.")
+    end #team can only have TEAM_SIZE players maximum
   end
 
   def can_buy_players?
@@ -57,7 +57,7 @@ class Team < ApplicationRecord
   end
 
   def sell_player(player_cost)
-    self.war_chest = self.war_chest + (player_cost * (100 - PLAYERDEPRECIATON)/100)
+    self.war_chest = self.war_chest + (player_cost * (100 - PLAYER_DEPRECIATION)/100)
   end
 
   def available_opponents

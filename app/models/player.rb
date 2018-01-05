@@ -42,9 +42,9 @@ class Player < ApplicationRecord
 
   def set_defaults
     #makes player price related but not equal to their value
-    self.speed = rand(10) + 5
-    self.accuracy = rand(60) + 20
-    self.price = ((((self.speed * self.accuracy) * GAMELENGTH)/100) * (100-(PRICEADJUST/2) + (rand(0..PRICEADJUST))))/100
+    self.speed = rand(SPEED_VARIATION * 2) + (SPEED_AVG - SPEED_VARIATION)
+    self.accuracy = rand(ACCURACY_VARIATON * 2) + (ACCURACY_AVG - ACCURACY_VARIATON)
+    self.price = ((((self.speed * self.accuracy) * GAME_LENGTH)/100) * (100-(PRICE_ADJUST/2) + (rand(0..PRICE_ADJUST))))/100
     #                     value                     per game  normalize    %base                 %variation     normalize
   end
 
