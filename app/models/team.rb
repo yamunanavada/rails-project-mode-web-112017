@@ -39,7 +39,11 @@ class Team < ApplicationRecord
   def win_game(prize_money)
     self.war_chest = self.war_chest + prize_money
     self.save
-    #test this once scores are in place
+  end
+
+  def lose_game(prize_money)
+    self.war_chest = self.war_chest - prize_money
+    self.save
   end
 
   def max_players

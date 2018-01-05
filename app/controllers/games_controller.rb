@@ -11,6 +11,7 @@ class GamesController < ApplicationController
 
   end
 
+
   def create
     @game = Game.new(game_params)
     # @inverse_game = Game.new(team_id: game_params[:opponent_id], opponent_id: game_params[:team_id])
@@ -18,27 +19,21 @@ class GamesController < ApplicationController
     # && @inverse_game.valid?
     if @game.valid?
 
-<<<<<<< HEAD
-    if @game.valid? && @inverse_game.valid?
-
+      @game.save
       @team = Team.find(game_params[:team_id])
       @opponent = Team.find(game_params[:opponent_id])
-      @game.save && @inverse_game.save
       @game.generate_team_scores(@team)
       @game.generate_team_scores(@opponent)
+      @winner = @game.generate_winner
+      @prize_money = @game.aggregate_scores
 
-      @team_thrown = @team.thrown(@game)
-      @team_hits = @team.hits(@game)
-
-      @opponent_thrown = @opponent.thrown(@game)
-      @opponent_hits = @opponent.hits(@game)
-
-=======
-      @game.save
-      @game.team_scores(Team.find(game_params[:team_id]))
-      @game.team_scores(Team.find(game_params[:opponent_id]))
-      byebug
->>>>>>> master
+      if @winner == @team
+        @team.win_game(@prize_money)
+        @opponent.lose_game(@prize_money)
+      elsif @winner == @opponent
+        @opponent.win_game(@prize_money)
+        @team.lose_game(@prize_money)
+      end
       redirect_to game_path(@game)
     else
       flash[:error] = @game.errors.full_messages

@@ -17,7 +17,7 @@ class Player < ApplicationRecord
   # end
 
   def thrown
-    (self.speed * 60)
+    (self.speed * GAME_LENGTH)
   end
 
   def hits

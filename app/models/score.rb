@@ -9,12 +9,5 @@ class Score < ApplicationRecord
     @hits_given = hits_given
   end
 
-  def thrown
-    (player.speed * 60)
-  end
-
-  def hits
-    (thrown * player.accuracy)/100
-  end
 
 end
