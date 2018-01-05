@@ -40,8 +40,8 @@ class Team < ApplicationRecord
 
   def max_players
     if self.players.count > TEAMSIZE
-      errors.add(:team, "has 11 players already.")
-    end #team can only have 11 players maximum
+      errors.add(:team, "has #{TEAMSIZE} players already.")
+    end #team can only have TEAMSIZE players maximum
   end
 
   def can_buy_players?
