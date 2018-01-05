@@ -1,10 +1,13 @@
+<h2 class="tile" id="headers">Start a New Fight!</h2>
+
+<div class="errors">
 <% if flash[:error] %>
   <ul><% flash[:error].each do |error| %>
     <li><%= error %></li>
   <% end %></ul>
 <% end %>
+</div>
 
-<h2 class="tile" id="headers">Start a New Fight!</h2>
 <div class="tile">
 <%= form_for @game do |f| %>
   <p><%= g.collection_select :opponent_id, @opponents, :id, :name %><br>
