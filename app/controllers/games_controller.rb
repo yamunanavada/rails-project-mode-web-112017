@@ -1,11 +1,9 @@
 class GamesController < ApplicationController
 
-
   def show
     @game = Game.find(params[:id])
     @team = Team.find(@game.team.id)
     @opponent = Team.find(@game.opponent.id)
-    @winner = @game.generate_winner(@team, @opponent)
   end
 
   def new
@@ -19,17 +17,10 @@ class GamesController < ApplicationController
     #instead of doing inverse game...
     # && @inverse_game.valid?
     if @game.valid?
-      @game.save
-      @team = Team.find(game_params[:team_id])
-      @opponent = Team.find(game_params[:opponent_id])
-      @game.generate_team_scores(@team)
-      @game.generate_team_scores(@opponent)
-      @winner = @game.generate_winner(@team, @opponent)
-      @prize_money = @game.aggregate_scores
 
-      if @winner
-        @winner.win_game(@prize_money)
-      end
+      @game.save
+      @game.generate_team_scores(Team.find(game_params[:team_id]))
+      @game.generate_team_scores(Team.find(game_params[:opponent_id]))
       redirect_to game_path(@game)
     else
       flash[:error] = @game.errors.full_messages

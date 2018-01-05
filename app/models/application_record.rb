@@ -13,6 +13,7 @@ class ApplicationRecord < ActiveRecord::Base
 
 
   TEAM_SIZE = 10
-
+  TEAM_PRICE_AVG = (SPEED_AVG * ACCURACY_AVG * TEAM_SIZE)/10
+  STARTING_BONUS = TEAM_PRICE_AVG/5
 
 end
