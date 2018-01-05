@@ -1,25 +1,55 @@
-<h2>Snowball Fight Commence!</h2>
-<h3><%= link_to @game.team.name, @game.team %> vs. <%= link_to @game.opponent.name, @game.opponent %></h3>
+<div class="tile" id="headers">
+  <h2>Snowball Fight Commence!</h2>
+  <h3><%= link_to @game.team.name, @game.team %> vs. <%= link_to @game.opponent.name, @game.opponent %></h3>
+</div>
 
+<div class="tile">
 <% if @winner.class == Team %>
   <h3>The Winner is <%=@winner.name %>!!!</h3>
   <p>Total prize money: <%= @game.aggregate_scores %></p>
 <% else %>
   <h3> Tie!! </h3>
 <% end %>
+</div>
 
-<p><strong> Total Hits</strong> <br>
-  <%=@game.team.name%>: <%= @team.hits(@game)  %> hits<br>
-  <%=@game.opponent.name%>: <%= @opponent.hits(@game) %> hits</p>
+<div class="tile">
+  <p><strong> Total Hits</strong> <br>
+    <%=@game.team.name%>: <%= @team.hits(@game)  %> hits<br>
+    <%=@game.opponent.name%>: <%= @opponent.hits(@game) %> hits</p>
+</div>
 
 
-
-<p><strong> <%= @game.team.name %> Players:</strong></p>
-<ul><% @game.team.players.each do |player| %>
-  <li><%=link_to player.name, player %> | Snowballs Thrown: <%= player.scores.find_by(game_id: @game.id).balls_thrown %> | Hits: <%= player.scores.find_by(game_id: @game.id).hits %></li>
-<% end %></ul>
-
-<p><strong> <%= @game.opponent.name %> Players:</strong></p>
-<ul><% @game.opponent.players.each do |player| %>
-  <li><%=link_to player.name, player %> | Snowballs Thrown: <%= player.scores.find_by(game_id: @game.id).balls_thrown %> | Hits: <%= player.scores.find_by(game_id: @game.id).hits %></li>
-<% end %></ul>
+<div class="tile third">
+  <h3><%=@game.team.name %></h3>
+  <table class="table table-hover">
+    <tbody>
+        <tr>
+          <th class="align-middle">Name</th>
+          <th class="align-middle">Snowballs Thrown</th>
+          <th class="align-middle">Hits</th>
+        </tr>
+    <% @game.team.players.order(name: :desc).each do |player| %><tr>
+      <td class="align-middle"><%= link_to player.name, player %></td>
+      <td class="align-middle"><%=player.scores.find_by(game_id: @game.id).balls_thrown %></td>
+      <td class="align-middle"><%= player.scores.find_by(game_id: @game.id).hits%> </td>
+    </tr>
+    <%end%></tbody>
+    </table>
+</div>
+<div class="tile third">
+  <h3><%=@game.opponent.name %></h3>
+  <table class="table table-hover">
+    <tbody>
+        <tr>
+          <th class="align-middle">Name</th>
+          <th class="align-middle">Snowballs Thrown</th>
+          <th class="align-middle">Hits</th>
+        </tr>
+    <% @game.opponent.players.order(name: :desc).each do |player| %><tr>
+      <td class="align-middle"><%= link_to player.name, player %></td>
+      <td class="align-middle"><%=player.scores.find_by(game_id: @game.id).balls_thrown %></td>
+      <td class="align-middle"><%= player.scores.find_by(game_id: @game.id).hits %> </td>
+    </tr>
+    <%end%></tbody>
+    </table>
+</div>

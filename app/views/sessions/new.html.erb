@@ -3,9 +3,13 @@
 <% end %>
 
 <div class='tile'>
-<%= form_tag sessions_path do %>
-  <%= text_field_tag :username, nil, placeholder: "Username" %>
-  <%= password_field_tag :password, nil, placeholder: "Password" %>
-  <%= submit_tag "Sign In" %>
-<% end %>
+  <%= form_tag sessions_path do %>
+    <%= text_field_tag :username, nil, placeholder: "Username" %>
+    <%= password_field_tag :password, nil, placeholder: "Password" %>
+    <%= submit_tag "Sign In" %>
+  <% end %>
+</div>
+
+<div class="tile">
+  <a class="btn btn-default bg-light" href="<%=root_path%>" role="button">Back</a>
 </div>

@@ -4,9 +4,11 @@
   <% end %></ul>
 <% end %>
 
-<h2>Start a New Fight!</h2>
+<h2 class="tile" id="headers">Start a New Fight!</h2>
+<div class="tile">
 <%= form_for @game do |f| %>
   <p><%= g.collection_select :opponent_id, @opponents, :id, :name %><br>
   <%= f.text_field :name %><br></p>
   <%= f.submit %><br>
 <% end %>
+</div>

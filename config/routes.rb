@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   root 'sessions#index'
   get '/sessions', to: 'sessions#index'
   get "/signup", to: "users#new", as: "signup"
+  post "/sessions#show", to: 'sessions#show', as: "home"
   get "/signin", to: "sessions#new",  as: "signin"
   post "/sessions", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy"
