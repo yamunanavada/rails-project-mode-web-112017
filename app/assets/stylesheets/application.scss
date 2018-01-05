@@ -53,14 +53,16 @@
 
 .first {
     float: left;
-    width: 50%;
+    width: 60%;
     height: auto;
+    background-color: rgb(212, 213, 217)
 }
 
 .second{
     float: right;
-    width: 40%;
+    width: 30%;
     height: auto;
+    background-color: rgb(212, 213, 217)
 }
 
 .third {
@@ -86,4 +88,15 @@
 .errors{
   margin: 20px;
   color: red;
+}
+
+
+.col-container {
+    display: table;
+    width: 100%;
+}
+.col {
+    display: table-cell;
+    padding: 16px;
+    margin: 30px;
 }

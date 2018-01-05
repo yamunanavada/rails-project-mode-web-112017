@@ -5,42 +5,46 @@
   <p><strong>War Chest: </strong> <%= @team.war_chest%> snowballs</p>
 </div>
 
-<div class="tile first border border-secondary" id="sub-teams">
-  <p><strong>Players: </strong></p>
-  <table class="table">
-    <tbody>
-        <tr>
-          <th class="align-middle">#</th>
-          <th class="align-middle">Player</th>
-          <% if @user == current_user %>
-            <th class="align-middle"></th>
-            <% end %>
-        </tr>
-        <% @team.players.each do |player| %><tr>
-          <td class="align-middle"><%=@team.players.index(player) + 1 %></td>
-          <td class="align-middle"><%= link_to player.name, player %></td>
-          <% if @user == current_user %>
-          <td class="align-middle"><%= button_to "Sell Player", delete_team_player_path(player.team_players.find_by(team_id: @team.id)), method: :delete%></td>
-        <% end%></tr>
-        <% end %></tbody>
-  </table>
-</div>
+<div class="col-container">
+  <div class="col">
+    <p><strong>Players: </strong></p>
+    <table class="table">
+      <tbody>
+          <tr>
+            <th class="align-middle">#</th>
+            <th class="align-middle">Player</th>
+            <% if @user == current_user %>
+              <th class="align-middle"></th>
+              <% end %>
+          </tr>
+          <% @team.players.each do |player| %><tr>
+            <td class="align-middle"><%=@team.players.index(player) + 1 %></td>
+            <td class="align-middle"><%= link_to player.name, player %></td>
+            <% if @user == current_user %>
+            <td class="align-middle"><%= button_to "Sell Player", delete_team_player_path(player.team_players.find_by(team_id: @team.id)), method: :delete%></td>
+          <% end%></tr>
+          <% end %></tbody>
+    </table>
+  </div>
+  <% if @user == current_user %>
 
-<% if @user == current_user %>
-<div class="tile second border border-secondary" id="sub-teams">
+  <div class="col">
 
-  <% if @team.players.length < 11 %>
-    <p><strong>Add Player To This Team: </strong>
-      <%= form_for @team_player do |f| %>
-          <%= f.hidden_field :team_id, value: @team.id %>
-          <%= f.label :"Select a Player" %>
-          <%= f.collection_select :player_id, @players, :id, :name_with_info %><br>
-          <%= f.submit "Add Player" %>
-      <% end %></p>
+    <% if @team.players.length < 11 %>
+      <p><strong>Add Player To This Team: </strong>
+        <%= form_for @team_player do |f| %>
+            <%= f.hidden_field :team_id, value: @team.id %>
+            <%= f.label :"Select a Player" %>
+            <%= f.collection_select :player_id, @players, :id, :name_with_info %><br>
+            <%= f.submit "Add Player" %>
+        <% end %></p>
+    <% end %>
+    <a class="btn btn-default bg-light" href="<%=players_path%>" role="button">View All Players</a>
+  </div>
   <% end %>
-  <a class="btn btn-default bg-light" href="<%=players_path%>" role="button">View All Players</a>
+
 </div>
-<% end %>
+
 
 
 <div class="tile first border border-secondary" id="sub-teams">

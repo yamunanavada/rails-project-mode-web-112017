@@ -11,12 +11,15 @@
             <tr>
               <th class="align-middle">#</th>
               <th class="align-middle">Team</th>
+              <th class="align-middle">War Chest</th>
               <th class="align-middle">User</th>
             </tr>
         <% @league.teams.order(war_chest: :desc).each do |team| %><tr>
           <td class="align-middle"><%= @league.teams.order(war_chest: :desc).index(team) + 1 %></td>
           <td class="align-middle"><%= link_to team.name, team %></td>
+          <td class="align-middle"><%= league.war_chest %> </td>
           <td class="align-middle"><%= link_to team.user.name, team.user %> </td>
+
         </tr>
         <%end%></tbody>
         </table>
