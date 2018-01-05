@@ -6,26 +6,29 @@
 </div>
 
 <div class="col-container">
-  <div class="col">
-    <p><strong>Players: </strong></p>
-    <table class="table">
-      <tbody>
-          <tr>
-            <th class="align-middle">#</th>
-            <th class="align-middle">Player</th>
-            <% if @user == current_user %>
-              <th class="align-middle"></th>
-              <% end %>
-          </tr>
-          <% @team.players.each do |player| %><tr>
-            <td class="align-middle"><%=@team.players.index(player) + 1 %></td>
-            <td class="align-middle"><%= link_to player.name, player %></td>
-            <% if @user == current_user %>
-            <td class="align-middle"><%= button_to "Sell Player", delete_team_player_path(player.team_players.find_by(team_id: @team.id)), method: :delete%></td>
-          <% end%></tr>
-          <% end %></tbody>
-    </table>
-  </div>
+  <div class="row">
+    <div class="col">
+      <div class="tile color">
+      <h3><strong>Players </strong></h3>
+          <table class="table">
+            <tbody>
+                <tr>
+                  <th class="align-middle">#</th>
+                  <th class="align-middle">Player</th>
+                  <% if @user == current_user %>
+                    <th class="align-middle"></th>
+                    <% end %>
+                </tr>
+                <% @team.players.each do |player| %><tr>
+                  <td class="align-middle"><%=@team.players.index(player) + 1 %></td>
+                  <td class="align-middle"><%= link_to player.name, player %></td>
+                  <% if @user == current_user %>
+                  <td class="align-middle"><%= button_to "Sell Player", delete_team_player_path(player.team_players.find_by(team_id: @team.id)), method: :delete%></td>
+                <% end%></tr>
+                <% end %></tbody>
+          </table>
+        </div>
+    </div>
   <% if @user == current_user %>
 
   <div class="col">
@@ -43,43 +46,48 @@
   </div>
   <% end %>
 
+  </div>
+
+
+  <div class="row">
+    <div class="col">
+      <div class="tile color">
+          <h3><strong>Snowball Fights Concluded </strong></h3>
+          <table class="table">
+            <tbody>
+                <tr>
+                  <th class="align-middle">#</th>
+                  <th class="align-middle">Opponent</th>
+                  <th class="align-middle">Winner</th>
+                </tr>
+                <% @games.each do |game|%><tr>
+                  <td class="align-middle"><%=  @games.index(game) + 1 %></td>
+                  <td class="align-middle"><%if game.opponent.id == @team.id %>
+                      <%= link_to game.team.name, game.team %>
+                      <%else%>
+                        <%=link_to game.opponent.name, game.opponent %></td>
+                        <% end %>
+                  <td class="align-middle"><% if game.generate_winner == nil%>
+                    <%= "Tie" %>
+                  <% else %>
+                    <%= game.generate_winner.name %>
+                  <% end %></td></tr>
+                <% end %></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <% if @user == current_user %>
+      <div class='col'>
+        <p><strong>Start a Fight: </strong>
+          <%= form_for @game do |f| %>
+              <%= f.hidden_field :team_id, value: @team.id %>
+              <%= f.label :"Select an Opponent" %>
+              <%= f.collection_select :opponent_id, @opponents, :id, :name %><br>
+              <%= f.submit "Snowball Fight!" %>
+          <% end %></p>
+      </div>
+      <% end %>
+    </div>
 </div>
-
-
-
-<div class="tile first border border-secondary" id="sub-teams">
-  <p><strong>Snowball Fights Concluded: </strong></p>
-  <table class="table">
-    <tbody>
-        <tr>
-          <th class="align-middle">#</th>
-          <th class="align-middle">Opponent</th>
-          <th class="align-middle">Winner</th>
-        </tr>
-        <% @games.each do |game|%><tr>
-          <td class="align-middle"><%=  @games.index(game) + 1 %></td>
-          <td class="align-middle"><%if game.opponent.id == @team.id %>
-              <%= link_to game.team.name, game.team %>
-              <%else%>
-                <%=link_to game.opponent.name, game.opponent %></td>
-                <% end %>
-          <td class="align-middle"><% if game.generate_winner == nil%>
-            <%= "Tie" %>
-          <% else %>
-            <%= game.generate_winner.name %>
-          <% end %></td></tr>
-        <% end %></tbody>
-  </table>
-</div>
-
-<% if @user == current_user %>
-<div class="tile second border border-secondary" id="sub-teams">
-  <p><strong>Start a Fight: </strong>
-    <%= form_for @game do |f| %>
-        <%= f.hidden_field :team_id, value: @team.id %>
-        <%= f.label :"Select an Opponent" %>
-        <%= f.collection_select :opponent_id, @opponents, :id, :name %><br>
-        <%= f.submit "Snowball Fight!" %>
-    <% end %></p>
-</div>
-<% end %>

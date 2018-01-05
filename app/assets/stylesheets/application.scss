@@ -71,6 +71,7 @@
   height: auto;
   margin-right: 30px;
   margin-left: 30px;
+
   background-color: rgb(212, 213, 217);
 }
 
@@ -94,9 +95,19 @@
 .col-container {
     display: table;
     width: 100%;
+    column-gap: 40px;
 }
 .col {
-    display: table-cell;
-    padding: 16px;
-    margin: 30px;
+  border: 20px;
+  border-color: black;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  display: table-cell;
+  margin: 30px;
+}
+
+.color {
+  background-color: rgb(212, 213, 217);
 }
