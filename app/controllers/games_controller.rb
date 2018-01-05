@@ -4,6 +4,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @team = Team.find(@game.team.id)
     @opponent = Team.find(@game.opponent.id)
+    @winner = @game.generate_winner
   end
 
   def new

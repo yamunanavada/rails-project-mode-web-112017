@@ -1,15 +1,17 @@
 class SessionsController < ApplicationController
   skip_before_action :authorized, only: [:index, :new, :create]
 
+
   def index
   end
 
   def new
+    @user = User.new
   end
 
   def create
     @user = User.find_by(username: params[:username])
-    if @user == @user.authenticate(params[:password])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
@@ -20,7 +22,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to signup_path
+    redirect_to root_path
   end
 
 

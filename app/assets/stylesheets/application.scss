@@ -13,3 +13,50 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap";
+
+
+ body {
+  padding-bottom: 30px;
+
+}
+
+
+.tile {
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+#headers {
+  background-color: rgb(109,123,154);
+  color: white;
+}
+
+#sub-teams {
+  margin: 20px;
+  padding: 10px;
+
+}
+
+
+.first {
+    float: left;
+    width: 60%;
+    height: auto;
+    ;
+}
+
+.second{
+    float: right;
+    width: 30%;
+    height: auto;
+}
+
+.button_styles{
+  background-color: rgba(0, 0, 0, 0.9);
+  border-color: grey;
+}

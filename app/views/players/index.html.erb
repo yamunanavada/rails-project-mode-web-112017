@@ -1,5 +1,25 @@
-<h2>Players</h2>
+<h2 class="tile" id="headers">Players</h2>
 
-<ul><% @players.sort_by {|p| p.price}.each do |player| %>
-  <li><%= link_to player.name, player %> | Speed: <%= player.speed %> SPM | Accuracy: <%= player.accuracy %>% | Price: <%= player.price %> snowballs <!-- selector to add player to a team --></li>
-<% end %></ul>
+
+<div class="tile">
+  <table class="table table-hover">
+    <tbody>
+        <tr>
+          <th class="align-middle">#</th>
+          <th class="align-middle">Name</th>
+          <th class="align-middle">Speed</th>
+          <th class="align-middle">Accuracy</th>
+          <th class="align-middle">Price</th>
+        </tr>
+        <% count = 1 %>
+        <% @players.order(price: :desc).each do |player| %><tr>
+          <td class="align-middle"><%= count %></td>
+          <td class="align-middle"><%= link_to player.name, player%></td>
+          <td class="align-middle"><%= player.speed%></td>
+          <td class="align-middle"><%= player.accuracy%></td>
+          <td class="align-middle"><%= player.price%></td>
+          <% count+=1%>
+        </tr>
+        <% end %></tbody>
+  </table>
+</div>

@@ -4,6 +4,7 @@
   <% end %></ul>
 <% end %>
 
+<div class="tile">
 <%= form_for @user do |f| %>
   <p><%= f.label :name %><br>
   <%= f.text_field :name %><br></p>
@@ -14,3 +15,4 @@
   <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %><br></p>
   <%= f.submit %><br>
 <% end %>
+</div>

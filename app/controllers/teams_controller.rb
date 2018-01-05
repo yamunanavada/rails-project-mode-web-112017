@@ -2,11 +2,14 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :destroy, :update]
 
 
+
   def show
     @game = Game.new
     @opponents = @team.available_opponents
     @team_player = TeamPlayer.new
     @players = @team.league.players_available
+    @games = @team.all_games
+    @user = @team.user
   end
 
   def new
@@ -17,7 +20,6 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     @team.user = User.find(session[:user_id])
-    @team.war_chest = 100
     @league = League.find(team_params[:league_id])
     if @team.valid? && @league.valid?
       @team.save

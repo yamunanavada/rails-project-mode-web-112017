@@ -1,5 +1,18 @@
 <h2>Snowball Fight Commence!</h2>
-<h3><%= @game.team.name %> <%= @team.hits(@game) %> vs. <%= @game.opponent.name %> <%= @opponent.hits(@game) %></h3>
+<h3><%= link_to @game.team.name, @game.team %> vs. <%= link_to @game.opponent.name, @game.opponent %></h3>
+
+<% if @winner.class == Team %>
+  <h3>The Winner is <%=@winner.name %>!!!</h3>
+  <p>Total prize money: <%= @game.aggregate_scores %></p>
+<% else %>
+  <h3> Tie!! </h3>
+<% end %>
+
+<p><strong> Total Hits</strong> <br>
+  <%=@game.team.name%>: <%= @team.hits(@game)  %> hits<br>
+  <%=@game.opponent.name%>: <%= @opponent.hits(@game) %> hits</p>
+
+
 
 <p><strong> <%= @game.team.name %> Players:</strong></p>
 <ul><% @game.team.players.each do |player| %>
