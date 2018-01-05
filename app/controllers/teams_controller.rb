@@ -19,7 +19,6 @@ class TeamsController < ApplicationController
     byebug
     @team = Team.new(team_params)
     @team.user = User.find(session[:user_id])
-    @team.war_chest = @team.starting_war_chest
     @league = League.find(team_params[:league_id])
     if @team.valid? && @league.valid?
       @team.save

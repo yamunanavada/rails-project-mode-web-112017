@@ -9,9 +9,9 @@ class Team < ApplicationRecord
   validate :max_players
   validate :can_buy_players?
   #validate that team has money
-  def starting_war_chest
-    (TEAM_PRICE_AVG + STARTING_BONUS)
-  end
+
+  before_validation :set_defaults, on: :create
+
 
   def thrown(game)
     thrown = 0
@@ -71,6 +71,10 @@ class Team < ApplicationRecord
     end
   end
 
+  private
 
+  def set_defaults
+      self.war_chest = TEAM_PRICE_AVG + STARTING_BONUS
+  end
 
 end
