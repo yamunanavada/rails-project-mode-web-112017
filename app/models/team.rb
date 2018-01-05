@@ -10,6 +10,8 @@ class Team < ApplicationRecord
   validate :can_buy_players?
   #validate that team has money
 
+  before_validation :set_defaults, on: :create
+
 
   def thrown(game)
     thrown = 0
@@ -39,9 +41,9 @@ class Team < ApplicationRecord
   end
 
   def max_players
-    if self.players.count > 11
-      errors.add(:team, "has 11 players already.")
-    end #team can only have 11 players maximum
+    if self.players.count > TEAM_SIZE
+      errors.add(:team, "has #{TEAM_SIZE} players already.")
+    end #team can only have TEAM_SIZE players maximum
   end
 
   def can_buy_players?
@@ -57,7 +59,7 @@ class Team < ApplicationRecord
   end
 
   def sell_player(player_cost)
-    self.war_chest = self.war_chest + player_cost
+    self.war_chest = self.war_chest + (player_cost * (100 - PLAYER_DEPRECIATION)/100)
   end
 
   def available_opponents
@@ -69,10 +71,17 @@ class Team < ApplicationRecord
     end
   end
 
+<<<<<<< HEAD
   def all_games
     Game.all.where(team_id: self.id) + Game.all.where(opponent_id: self.id)
   end
 
+=======
+  private
+>>>>>>> master
 
+  def set_defaults
+      self.war_chest = TEAM_PRICE_AVG + STARTING_BONUS
+  end
 
 end

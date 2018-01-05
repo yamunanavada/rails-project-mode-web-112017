@@ -5,6 +5,8 @@ class Player < ApplicationRecord
   has_many :games, through: :scores
   has_many :leagues, through: :teams
 
+  before_create :set_defaults
+
   # def teams_available(user)
   #   user_teams = Team.all.select {|t| user == t.user} #users teams
   #   available_teams = user_teams.select do |t| #select user's teams where
@@ -36,5 +38,14 @@ class Player < ApplicationRecord
     end
   end
 
+  private
+
+  def set_defaults
+    #makes player price related but not equal to their value
+    self.speed = rand(SPEED_VARIATION * 2) + (SPEED_AVG - SPEED_VARIATION)
+    self.accuracy = rand(ACCURACY_VARIATON * 2) + (ACCURACY_AVG - ACCURACY_VARIATON)
+    self.price = ((((self.speed * self.accuracy) * GAME_LENGTH)/100) * (100-(PRICE_ADJUST/2) + (rand(0..PRICE_ADJUST))))/100
+    #                     value                     per game  normalize    %base                 %variation     normalize
+  end
 
 end

@@ -10,7 +10,7 @@ class Score < ApplicationRecord
   end
 
   def thrown
-    (player.speed * 60)
+    (player.speed * GAME_LENGTH)
   end
 
   def hits

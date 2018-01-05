@@ -8,11 +8,7 @@
 
 
 100.times do
-  Player.create(name: Faker::HarryPotter.character,
-    speed: rand(10),
-    accuracy: rand(100),
-    price: rand(15)
-  )
+  Player.create(name: Faker::HarryPotter.character)
 end
 
 
@@ -32,8 +28,7 @@ end
     Team.create(
       name: Faker::Team.name,
       user_id: User.all.sample.id,
-      league_id: league.id,
-      war_chest: 100
+      league_id: league.id
     )
   end
 end

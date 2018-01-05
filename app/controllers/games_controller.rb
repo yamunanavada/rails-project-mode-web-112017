@@ -1,6 +1,5 @@
 class GamesController < ApplicationController
 
-
   def show
     @game = Game.find(params[:id])
     @team = Team.find(@game.team.id)
@@ -19,6 +18,7 @@ class GamesController < ApplicationController
     #instead of doing inverse game...
     # && @inverse_game.valid?
     if @game.valid?
+
       @game.save
       @team = Team.find(game_params[:team_id])
       @opponent = Team.find(game_params[:opponent_id])
