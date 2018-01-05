@@ -11,7 +11,6 @@
   Player.create(name: Faker::HarryPotter.character)
 end
 
-
 100.times do
   User.create(
     name: Faker::Name.name,
@@ -21,10 +20,8 @@ end
 end
 
 ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"].each do |name|
-  league = League.create(
-    name: name
-  )
-  20.times do
+  league = League.create(name: name)
+  rand(5..14).times do
     Team.create(
       name: "#{Faker::HarryPotter.location} #{Faker::ElderScrolls.creature.pluralize(2)}",
       user_id: User.all.sample.id,
