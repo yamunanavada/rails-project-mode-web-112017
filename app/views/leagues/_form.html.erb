@@ -4,8 +4,10 @@
   <% end %></ul>
 <% end %>
 
-<%= form_for @league do |f| %>
-  <p><%= f.label :name %><br>
-  <%= f.text_field :name %><br></p>
-  <%= f.submit %><br>
-<% end %>
+<div class="tile">
+  <%= form_for @league do |f| %>
+    <p><%= f.label :name %><br>
+    <%= f.text_field :name %><br></p>
+    <%= f.submit %><br>
+  <% end %>
+</div>

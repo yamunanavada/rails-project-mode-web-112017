@@ -1,7 +1,22 @@
-<h2>All Leagues</h2>
+<h2 class="tile" id="headers">All Leagues</h2>
 
-<ul><% @leagues.each do |league| %>
-  <li><%= link_to league.name, league %></li>
-<% end %></ul>
+<div class='tile'>
+<table class="table table-condensed table-hover">
+  <tbody>
+      <tr>
+        <th class="align-middle">#</th>
+        <th class="align-middle">League</th>
+        <th class="align-middle">Number of Teams</th>
+      </tr>
+  <% @leagues.order(name: :desc).each do |league| %><tr>
+    <td class="align-middle"><%= @leagues.order(name: :desc).index(league) + 1 %></td>
+    <td class="align-middle"><%= link_to league.name, league.name %></td>
+    <td class="align-middle"><%= league.teams.count%> </td>
+  </tr>
+  <%end%></tbody>
+  </table>
+</div>
 
-<%= link_to "Create New League", new_league_path %>
+<div class="tile">
+  <a class="btn btn-default bg-light" href="<%=new_league_path%>" role="button">Create League</a>
+</div>

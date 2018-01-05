@@ -4,10 +4,12 @@
   <% end %></ul>
 <% end %>
 
-<%= form_for @team do |f| %>
-  <p><%= f.label :name %><br>
-  <%= f.text_field :name %><br></p>
-  <p><%= f.label :"Select a League" %><br>
-  <%= f.collection_select :league_id, @leagues, :id, :name, prompt: true %>
-  <%= f.submit %><br>
-<% end %>
+<div class="tile">
+  <%= form_for @team do |f| %>
+    <p><%= f.label :name %><br>
+    <%= f.text_field :name %><br></p>
+    <p><%= f.label :"Select a League" %><br>
+    <%= f.collection_select :league_id, @leagues, :id, :name, prompt: true %>
+    <%= f.submit %><br>
+  <% end %>
+</div>

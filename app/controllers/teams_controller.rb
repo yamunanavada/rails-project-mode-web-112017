@@ -9,6 +9,7 @@ class TeamsController < ApplicationController
     @team_player = TeamPlayer.new
     @players = @team.league.players_available
     @games = @team.all_games
+    @user = @team.user
   end
 
   def new

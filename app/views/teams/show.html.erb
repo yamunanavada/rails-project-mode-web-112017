@@ -12,18 +12,23 @@
         <tr>
           <th class="align-middle">#</th>
           <th class="align-middle">Player</th>
-          <th class="align-middle"></th>
+          <% if @user == current_user %>
+            <th class="align-middle"></th>
+            <% end %>
         </tr>
         <% @team.players.each do |player| %><tr>
           <td class="align-middle"><%=@team.players.index(player) + 1 %></td>
           <td class="align-middle"><%= link_to player.name, player %></td>
-          <td class="align-middle"><%= button_to "Sell Player", delete_team_player_path(player.team_players.find_by(team_id: @team.id)), method: :delete%></td></tr>
+          <% if @user == current_user %>
+          <td class="align-middle"><%= button_to "Sell Player", delete_team_player_path(player.team_players.find_by(team_id: @team.id)), method: :delete%></td>
+        <% end%></tr>
         <% end %></tbody>
   </table>
 </div>
 
-
+<% if @user == current_user %>
 <div class="tile second border border-secondary" id="sub-teams">
+
   <% if @team.players.length < 11 %>
     <p><strong>Add Player To This Team: </strong>
       <%= form_for @team_player do |f| %>
@@ -33,8 +38,10 @@
           <%= f.submit "Add Player" %>
       <% end %></p>
   <% end %>
-  <%= link_to "View All Players", players_path %>
+  <a class="btn btn-default bg-light" href="<%=players_path%>" role="button">View All Players</a>
 </div>
+<% end %>
+
 
 <div class="tile first border border-secondary" id="sub-teams">
   <p><strong>Snowball Fights Concluded: </strong></p>
@@ -61,6 +68,7 @@
   </table>
 </div>
 
+<% if @user == current_user %>
 <div class="tile second border border-secondary" id="sub-teams">
   <p><strong>Start a Fight: </strong>
     <%= form_for @game do |f| %>
@@ -70,3 +78,4 @@
         <%= f.submit "Snowball Fight!" %>
     <% end %></p>
 </div>
+<% end %>
