@@ -69,6 +69,10 @@ class Team < ApplicationRecord
     end
   end
 
+  def all_games
+    Game.all.where(team_id: self.id) + Game.all.where(opponent_id: self.id)
+  end
+
 
 
 end

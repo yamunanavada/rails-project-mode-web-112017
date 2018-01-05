@@ -8,6 +8,7 @@ class TeamsController < ApplicationController
     @opponents = @team.available_opponents
     @team_player = TeamPlayer.new
     @players = @team.league.players_available
+    @games = @team.all_games
   end
 
   def new
@@ -16,7 +17,6 @@ class TeamsController < ApplicationController
   end
 
   def create
-    byebug
     @team = Team.new(team_params)
     @team.user = User.find(session[:user_id])
     @team.war_chest = 100

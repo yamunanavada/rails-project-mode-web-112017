@@ -1,15 +1,50 @@
-<h2> <%= @league.name %></h2>
+<div class="tile">
+  <h2> <%= @league.name %></h2>
 
-<p><strong>League Teams: </strong></p>
-<ul><% @league.teams.order(war_chest: :desc).each do |team| %>
-  <li>Team: <%= link_to team.name, team %> | User: <%= link_to team.user.name, team.user %> </li>
-<%end%></ul>
+  <div class='tile'>
+        <p><strong>League Teams: </strong></p>
+        <tr>
 
-<p><strong> All Fights Concluded: </strong></p>
-<% if @league.games == nil %>
-   No snowball fights yet!
-<% else %>
-    <ul><% @league.games.each do |game| %>
-        <li><%= game.team.name %> vs. <%= game.opponent.name %> - Winner:  </li>
-    <%end%></ul>
-<%end%>
+      <table class="table table-condensed">
+        <tbody>
+            <tr>
+              <th class="align-middle">#</th>
+              <th class="align-middle">Team</th>
+              <th class="align-middle">User</th>
+            </tr>
+        <% @league.teams.order(war_chest: :desc).each do |team| %><tr>
+          <td class="align-middle"><%= @league.teams.order(war_chest: :desc).index(team) + 1 %></td>
+          <td class="align-middle"><%= link_to team.name, team %></td>
+          <td class="align-middle"><%= link_to team.user.name, team.user %> </td>
+        </tr>
+        <%end%></tbody>
+        </table>
+      </div>
+      <div>
+        <p><strong> All Fights Concluded: </strong></p>
+        <% if @league.games == nil %>
+           No snowball fights yet!
+        <% else %>
+            <table class="table table-condensed">
+              <tbody>
+                  <tr>
+                    <th class="align-middle">#</th>
+                    <th class="align-middle">Fight</th>
+                    <th class="align-middle">Winner</th>
+                    <th class="align-middle">Link To Game</th>
+                  </tr>
+                  <% @league.games.each do |game|%><tr>
+                    <td class="align-middle"><%=  @league.games.index(game) + 1 %></td>
+                    <td class="align-middle"><%= game.team.name %> vs. <%= game.opponent.name %></td>
+                    <td class="align-middle">
+                      <% if game.generate_winner == nil%>
+                        <%= "Tie" %>
+                      <% else %>
+                        <%= game.generate_winner.name %>
+                      <% end %></td>
+                    <td class="align-middle"><%= link_to "See Game", game %></td></tr>
+                  <% end %></tbody>
+            </table>
+
+      <%end%>
+    </div>

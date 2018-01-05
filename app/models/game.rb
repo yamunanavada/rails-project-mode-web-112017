@@ -28,7 +28,7 @@ class Game < ApplicationRecord
 
 
 
-  def generate_winner(team, opponent)
+  def generate_winner
     if team.hits(self) - opponent.hits(self) > 0
       team
     elsif team.hits(self) - opponent.hits(self) < 0
