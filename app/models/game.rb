@@ -22,4 +22,20 @@ class Game < ApplicationRecord
     end
   end
 
+  def aggregate_scores
+    (self.team.hits(self) - self.opponent.hits(self)).abs
+  end
+
+
+
+  def generate_winner(team, opponent)
+    if team.hits(self) - opponent.hits(self) > 0
+      team
+    elsif team.hits(self) - opponent.hits(self) < 0
+      opponent
+    else
+      nil
+    end
+  end
+
 end

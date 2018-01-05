@@ -31,10 +31,6 @@ class Team < ApplicationRecord
     hits
   end
 
-  def team_in_leauge?
-
-
-  end
 
   def win_game(prize_money)
     self.war_chest = self.war_chest + prize_money
